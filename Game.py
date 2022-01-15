@@ -1,19 +1,21 @@
 import pygame, sys, math
+from PlaySound_Button import playSound_Button
 from pygame.locals import *
 
 
 class Game:
     def __init__(self, screen, width, height, clock):
-<<<<<<< HEAD
-=======
+
         pygame.mixer.init()
         pygame.mixer.set_num_channels(12)
->>>>>>> 2d496d785e629f7e79782a738dc30f90cff0053d
 
         self.screen = screen
         self.width = width
         self.height = height
         self.clock = clock
+
+        # Create a playSound button:
+        self.play_sound_button = playSound_Button()
 
         # colors
         self.black = (0, 0, 0)
@@ -54,6 +56,9 @@ class Game:
             #replayRect.center = self.width//2, self.height//2
 
             self.screen.blit(replay, replayRect)
+
+            # Draw the playSound button
+            self.play_sound_button.draw(self.screen)
 
             pygame.draw.line(self.screen, self.black, (0,0), (pygame.mouse.get_pos()))
 
