@@ -32,6 +32,16 @@ class Game:
 
             self.screen.fill(self.white)
 
+            piano = pygame.image.load('Resources/Piano_Keyboard.png')
+            piano.convert()
+            pianoRect = piano.get_rect()
+            pianoRect.center = self.width//2, self.height//2
+
+            self.screen.blit(piano, pianoRect)
+
+
+
+
             pygame.draw.line(self.screen, self.black, (0,0), (pygame.mouse.get_pos()))
 
             
