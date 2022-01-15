@@ -8,7 +8,10 @@ class Note:
         self.octave = octave
 
         self.name = symbol + str(octave)
-        self.sound = mixer.Sound("Resources/" + f"{self.name}" + ".wav")
+        self.sound = mixer.Sound("Audio/" + f"{self.name}" + ".wav")
 
     def play(self):
         self.mixer.Channel(0).play(self.sound)
+        while self.mixer.Channel(0).get_busy:
+            if not self.mixer.Channel(0).get_busy:
+                break

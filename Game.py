@@ -4,7 +4,6 @@ from pygame.locals import *
 
 class Game:
     def __init__(self, screen, width, height, clock):
-
         self.screen = screen
         self.width = width
         self.height = height
