@@ -8,3 +8,7 @@ if __name__ == "__main__":
 
     note = Note(pygame.mixer)
     note.play()
+
+    while note.playing():
+        if not note.playing():
+            break
