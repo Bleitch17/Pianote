@@ -7,11 +7,24 @@ from Game import Game
 
 def main():
     pygame.init()
+    width = 400
+    height = 400
+    screen = pygame.display.set_mode((width, height))
+    pygame.display.set_caption("Basic-Ear-Trainer")
+    clock = pygame.time.Clock()
 
-    MyApp = Game(250, 250)
-    MyApp.run()
+    currentScene = "game"
 
-    pygame.quit()
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+        if currentScene == "game":
+            scene = Game(screen, width, height, clock)
+            scene.run()
+
 
 
 if __name__ == "__main__":
