@@ -1,24 +1,25 @@
-import pygame
+import pygame, sys, math
+from pygame.locals import *
 
 
 class Game:
     def __init__(self, width=100, height=100):
 
         # window parameters
-        self.screen_w = width
-        self.screen_h = height
+        self.width = width
+        self.height = height
         self.size = (width, height)
         # self.logo = pygame.image.load("<Relative Path>")
         # pygame.display.set_icon(self.logo)
-        # pygame.display.set_caption("Snake")
+        pygame.display.set_caption("Basic-Ear-Trainer")
 
         # mouse variables
-        self.mouse_x = 0
-        self.mouse_y = 0
+        self.left, self.middle, self.right = pygame.mouse.get_pressed()
+        self.mouseX, self.mouseY = pygame.mouse.get_pos()
 
         # colors
-        self.black = 0, 0, 0
-        self.white = 255, 255, 255
+        self.black = (0, 0, 0)
+        self.white = (255, 255, 255)
 
         # surfaces
         self.screen = pygame.display.set_mode(self.size)
@@ -29,20 +30,23 @@ class Game:
 
     def run(self, r=True):
 
-        # variable controlling main loop
         self.running = r
 
         # main loop
         while self.running:
-            # ALL EVENT PROCESSING GOES BELOW
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+                    pygame.quit()
+                    sys.exit()
 
             # ALL EVENT PROCESSING GOES ABOVE
 
             # ALL GAME LOGIC GOES BELOW
+
+
+
 
             # ALL GAME LOGIC GOES ABOVE
 
@@ -50,8 +54,10 @@ class Game:
 
             self.screen.fill(self.white)
 
+            pygame.draw.line(self.screen, self.black, (0,0), (pygame.mouse.get_pos()))
+
+            
+
+
             pygame.display.update()
-
-            # ALL CODE TO DRAW GOES ABOVE
-
             self.clock.tick(60)
