@@ -4,11 +4,8 @@ from pygame.locals import *
 
 class Game:
     def __init__(self, screen, width, height, clock):
-<<<<<<< HEAD
-=======
         pygame.mixer.init()
         pygame.mixer.set_num_channels(12)
->>>>>>> 2d496d785e629f7e79782a738dc30f90cff0053d
 
         self.screen = screen
         self.width = width
@@ -38,12 +35,12 @@ class Game:
             self.screen.fill(self.white)
 
             piano = pygame.image.load('Resources/Piano_Keyboard.png')
+            piano = pygame.transform.scale(piano, (600, 200))
             piano.convert()
             pianoRect = piano.get_rect()
-            pianoRect.center = self.width//2, self.height//2
+            pianoRect.center = 400, 600
 
             self.screen.blit(piano, pianoRect)
-
 
             pygame.draw.rect(self.screen, self.black, pygame.Rect(30,30,60,60))
             replay = pygame.image.load('Resources/replay_button.png')
@@ -57,7 +54,11 @@ class Game:
 
             pygame.draw.line(self.screen, self.black, (0,0), (pygame.mouse.get_pos()))
 
-            
+            #accuracy meter
+            meter = pygame.image.load("Resources/scale.png")
+            meter.convert()
+
+            self.screen.blit(meter)
 
             print("Running Game")
             pygame.display.update()
