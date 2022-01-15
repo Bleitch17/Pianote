@@ -7,8 +7,8 @@ from Game import Game
 
 def main():
     pygame.init()
-    width = 400
-    height = 400
+    width = 800
+    height = 800
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("Basic-Ear-Trainer")
     clock = pygame.time.Clock()

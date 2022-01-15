@@ -14,8 +14,7 @@ class Game:
         self.black = (0, 0, 0)
         self.white = (255, 255, 255)
 
-
-        self.running = False
+        self.running = True
 
     def run(self):
 
@@ -37,6 +36,6 @@ class Game:
 
             
 
-
+            print("Running Game")
             pygame.display.update()
             self.clock.tick(60)
