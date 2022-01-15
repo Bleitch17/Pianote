@@ -4,6 +4,11 @@ from pygame.locals import *
 
 class Game:
     def __init__(self, screen, width, height, clock):
+<<<<<<< HEAD
+=======
+        pygame.mixer.init()
+        pygame.mixer.set_num_channels(12)
+>>>>>>> 2d496d785e629f7e79782a738dc30f90cff0053d
 
         self.screen = screen
         self.width = width
