@@ -20,6 +20,7 @@ class Game:
         # colors
         self.black = (0, 0, 0)
         self.white = (255, 255, 255)
+        self.grey = (50.2, 50.2, 50.2)
 
         self.running = True
 
@@ -47,15 +48,12 @@ class Game:
             self.screen.blit(piano, pianoRect)
 
 
-            pygame.draw.rect(self.screen, self.black, pygame.Rect(30,30,60,60))
-            replay = pygame.image.load('Resources/replay_button.png')
-            replay.convert()
-            replayRect = replay.get_rect()
-            #replayRect.inflate(-100, -100)
-            replayRect.fit(pygame.Rect(30,30,60,60))
-            #replayRect.center = self.width//2, self.height//2
 
-            self.screen.blit(replay, replayRect)
+            replay = pygame.image.load('Resources/replay_button.png')
+            replaySize = pygame.transform.scale(replay, (75,75))
+            replaySizeRect = replaySize.get_rect()
+            replaySizeRect.move_ip(30, 30)
+            self.screen.blit(replaySize, replaySizeRect)
 
             # Draw the playSound button
             self.play_sound_button.draw(self.screen)
