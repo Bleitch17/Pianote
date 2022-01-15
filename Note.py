@@ -8,3 +8,7 @@ class Note:
         self.octave = octave
 
         self.name = symbol + str(octave)
+        self.sound = mixer.Sound("Resources/" + f"{self.name}" + ".wav")
+
+    def play(self):
+        self.mixer.Channel(0).play(self.sound)
