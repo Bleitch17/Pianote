@@ -60,7 +60,7 @@ class Game:
                         self.replay_sound_button.play_sound(self.expected_note)
 
                     if self.piano.is_clicked(mouseX, mouseY) and self.expected_note is not None:
-                        self.actual_note = self.piano.get_played_note(self.expected_note)
+                        self.actual_note = self.piano.get_played_note(self.expected_note.get_octave())
                         self.actual_note.print_note()
 
                 elif event.type == pygame.MOUSEBUTTONUP:

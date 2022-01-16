@@ -33,7 +33,7 @@ class Piano:
                            Key(100, 0, 18, 78, "f#", Piano.black),
                            Key(127, 0, 18, 78, "g#", Piano.black),
                            Key(154, 0, 18, 78, "a#", Piano.black),
-                           Key(208, 0, 9, 78, "extra", Piano.black)]
+                           Key(208, 0, 9, 78, "c", Piano.black)]
 
     def is_clicked(self, mouse_x, mouse_y) -> bool:
         for key in self.black_keys:
@@ -48,8 +48,8 @@ class Piano:
                 self.pressed_key = key
                 return True
 
-    def get_played_note(self, expected_note):
-        return Note(self.mixer, self.pressed_key.symbol, expected_note.get_octave)
+    def get_played_note(self, octave):
+        return Note(self.mixer, self.pressed_key.symbol, octave)
 
     def draw(self, screen):
         for key in self.white_keys:

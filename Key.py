@@ -21,7 +21,10 @@ class Key:
         return self.symbol
 
     def update_color(self, new_color):
-        self.color = new_color
+        if self.symbol == "c" and self.color == (0, 0, 0):
+            self.color = (0, 0, 0)
+        else:
+            self.color = new_color
 
     def draw(self, surface):
         pygame.draw.rect(surface, self.color, self._rect)
