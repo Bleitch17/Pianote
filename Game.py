@@ -5,7 +5,7 @@ from Piano import Piano
 from Button import Button
 from pygame.locals import *
 import globalvars
-
+from Star import Star
 
 class Game:
     def __init__(self, screen, width, height, clock):
@@ -18,6 +18,9 @@ class Game:
         self.height = height
         self.clock = clock
         
+        # Create Star
+        self.star = Star()
+
         # Create the button to the menu
         self.menubutton = Button(100, 100, 100, 100, "Main Menu", (255, 255, 0), (0, 0, 0))
 
@@ -79,6 +82,10 @@ class Game:
                     self.piano.reset_color()
 
             self.screen.fill(self.white)
+
+            # Draw Star
+            self.star.updateStars()
+            self.star.drawStars(self.screen)
 
             # Draw the replay button
             self.replay_sound_button.draw(self.screen)
