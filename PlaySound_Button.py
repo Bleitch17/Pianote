@@ -28,6 +28,7 @@ class playSound_Button:
         self.playing_note.print_note()
         self.playing_note.play()
 
+        # TODO: This while loop is problematic, find a way to move it outside
         while self.playing_note.playing():
             if not self.playing_note.playing():
                 break
