@@ -1,4 +1,3 @@
-import pygame
 
 
 class Note:
@@ -53,3 +52,14 @@ class Note:
             return Note.octave_range3
         else:
             return Note.octave_range2
+
+    @staticmethod
+    def distance(note1, note2) -> int:
+        s1 = note1.get_symbol()
+        s2 = note2.get_symbol()
+        i1 = Note.note_symbol_list.index(s1)
+        i2 = Note.note_symbol_list.index(s2)
+        return min(abs(i1 - i2), 12 - abs(i2 - i1))
+
+
+

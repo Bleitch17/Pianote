@@ -3,6 +3,7 @@ from PlaySound_Button import playSound_Button
 from ReplaySound_Button import replaySound_Button
 from Piano import Piano
 from Button import Button
+from Note import Note
 from pygame.locals import *
 import globalvars
 
@@ -64,7 +65,7 @@ class Game:
                         print(self.expected_note)
                         self.replay_sound_button.play_sound(self.expected_note)
 
-                    if self.piano.is_clicked(mouseX, mouseY) and self.expected_note is not None:
+                    if self.piano.is_clicked(mouseX, mouseY) and self.expected_note is not None and left:
                         self.actual_note = self.piano.get_played_note(self.expected_note.get_octave())
                         self.actual_note.print_note()
 
@@ -77,6 +78,8 @@ class Game:
 
                 elif event.type == pygame.MOUSEBUTTONUP:
                     self.piano.reset_color()
+                    if self.expected_note is not None and self.actual_note is not None:
+                        print(Note.distance(self.expected_note, self.actual_note))
 
             self.screen.fill(self.white)
 
