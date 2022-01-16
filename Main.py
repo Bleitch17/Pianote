@@ -4,6 +4,7 @@ from pygame.locals import *
 import globalvars
 from Game import Game
 from Menu import Menu
+from Help import Help
 
 
 def main():
@@ -14,7 +15,7 @@ def main():
     pygame.display.set_caption("Pianote")
     clock = pygame.time.Clock()
 
-    globalvars.currentScene = "game"
+    globalvars.currentScene = "menu"
 
     while True:
         for event in pygame.event.get():
@@ -28,6 +29,10 @@ def main():
 
         if globalvars.currentScene == "menu":
             scene = Menu(screen, width, height, clock)
+            scene.run()
+
+        if globalvars.currentScene == "help":
+            scene = Help(screen, width, height, clock)
             scene.run()
 
 
