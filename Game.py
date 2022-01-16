@@ -105,18 +105,11 @@ class Game:
             # Draw the piano
             self.piano.draw(self.screen)
 
-            #accuracy meter
-            meter = pygame.image.load("Resources/scale.png")
-            meter = pygame.transform.scale(meter, (150, 150))
-            self.screen.blit(meter, (self.width//2 - 75, self.height//4.5))
+            # Meter
 
-            needle = pygame.image.load("Resources/needle.png")
-            needle = pygame.transform.scale(needle, (150, 150))
-            self.screen.blit(needle, (self.width//2 - 75, self.height//4.5))
 
             # Draw the menu button
             self.menubutton.draw(self.screen)
-            
 
             pygame.display.update()
             self.clock.tick(60)
