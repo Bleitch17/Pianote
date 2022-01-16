@@ -35,6 +35,10 @@ class Game:
         # Create a piano:
         self.piano = Piano(pygame.mixer, (self.width - 217 * Piano.scale_factor)//2, 400)
 
+        # Create meter
+        self.meter = Accuracy_Meter(self.width // 2 - 75, self.height // 4.5, self.width // 2 - 42,
+                                    self.height // 4 + 28)
+
         # Keep track of the "correct"  and "actual" note
         self.expected_note = None
         self.actual_note = None
