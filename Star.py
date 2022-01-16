@@ -7,7 +7,7 @@ import globalvars
 class Star:
     #global counter to keep track of number of correct answer
     #print a star with number of correct answers
-    positions = [(0,0), (0, 50), (0, 100), (0,150), (0, 200)]
+    positions = [(0,0), (50, 0), (100, 0), (150, 0), (200, 0)]
     star1 = 5
     star2 = 10
     star3 = 15
