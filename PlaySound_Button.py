@@ -16,11 +16,13 @@ class playSound_Button:
 
         self.collision_box = pygame.Rect(self.x_pos, self.y_pos, playSound_Button.width, playSound_Button.height)
 
-    def is_pressed(self, mouse_x_pos, mouse_y_pos) -> bool:
-        if self.x_pos <= mouse_x_pos <= self.x_pos + playSound_Button.width:
-            if self.y_pos <= mouse_y_pos <= self.y_pos + playSound_Button.height:
-                return True
+    def is_pressed(self, event) -> bool:
+        if self.collision_box.collidepoint(event.pos):
+            return True
         return False
+
+    def play_sound(self):
+        print("playSound button clicked! Now playing...")
 
     def draw(self, screen) -> None:
         screen.blit(self._image, (self.x_pos, self.y_pos))
