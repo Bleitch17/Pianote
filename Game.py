@@ -39,6 +39,12 @@ class Game:
         self.expected_note = None
         self.actual_note = None
 
+        # angle
+        self.angle = 0
+
+        # distance between expected and actual:
+        self.distance = 0
+
         # colors
         self.black = (0, 0, 0)
         self.white = (255, 255, 255)
