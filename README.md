@@ -23,6 +23,6 @@ Pianote is an application that helps musicians practice piano ear training
 
 ## Screenshots
 
-<img src="screenshots/menu_page.png" width="600" height="600">
-<img src="screenshots/game_page.png" width="600" height="600">
-<img src="screenshots/help_page.png" width="600" height="600">
+<img src="screenshots/menupage.png" width="600" height="600">
+<img src="screenshots/gamepage.png" width="600" height="600">
+<img src="screenshots/helppage.png" width="600" height="600">
