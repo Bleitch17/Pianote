@@ -14,10 +14,12 @@ class Menu:
         self.clock = clock
         
         # Create the button to the menu
-        self.menubutton = Button(100, 100, 100, 100, "Hello World", (255, 255, 0), (0, 0, 0))
+        self.menubutton = Button(self.width//2-50, 4*self.height//5, 100, 100, "Play Game", (255, 255, 0), (0, 0, 0))
 
         # Create a piano:
-        self.piano = Piano(pygame.mixer, self.width//2 - 110, 3*self.height//5)
+        self.piano = Piano(pygame.mixer, self.width//2 - 110, 1*self.height//5)
+
+        self.actual_note = None
 
         # colors
         self.black = (0, 0, 0)
@@ -42,13 +44,13 @@ class Menu:
                     # Call the collision checking functions of the various objects:
                     left, right, middle = pygame.mouse.get_pressed()
 
-                    if self.piano.is_clicked(mouseX, mouseY) and self.expected_note is not None:
-                        self.actual_note = self.piano.get_played_note(self.expected_note)
-                        self.actual_note.print_note()
+                    if left:
+                        self.piano.is_clicked(mouseX, mouseY)
 
                     if self.menubutton.is_pressed(event) and left:
                         print("Hello")
-                        globalvars.currentScene = "menu"
+                        globalvars.currentScene = "game"
+                        print(globalvars.currentScene)
                         self.running = False
                         break
 
@@ -57,7 +59,6 @@ class Menu:
 
             self.screen.fill(self.white)
 
-        
 
             # Draw the piano
             self.piano.draw(self.screen)
