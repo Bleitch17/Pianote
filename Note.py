@@ -28,6 +28,12 @@ class Note:
     def playing(self) -> bool:
         return self.mixer.Channel(self.channel_num).get_busy()
 
+    def get_symbol(self):
+        return self.symbol
+
+    def get_octave(self):
+        return self.octave
+
     def print_note(self) -> None:
         print(self.name)
 

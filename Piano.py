@@ -16,7 +16,8 @@ class Piano:
         self.surface = pygame.Surface((217, 128))
         self.surface.fill((0, 0, 0))
 
-        # Order matters!
+        self.pressed_key = None
+
         self.white_keys = [
                      Key(1, 1, 26, 126, "c", Piano.white),
                      Key(28, 1, 26, 126, "d", Piano.white),
@@ -34,26 +35,21 @@ class Piano:
                            Key(154, 0, 18, 78, "a#", Piano.black),
                            Key(208, 0, 9, 78, "extra", Piano.black)]
 
-    def check_collision(self, mouse_x, mouse_y) -> None:
-        key_pressed = False
+    def is_clicked(self, mouse_x, mouse_y) -> bool:
         for key in self.black_keys:
             if key.is_pressed(mouse_x - self.x_pos, mouse_y - self.y_pos):
                 key.update_color(Piano.pressed_color)
-                key_pressed = True
-                break
-            else:
-                key.update_color(Piano.black)
+                self.pressed_key = key
+                return True
 
-        if key_pressed:
-            for key in self.white_keys:
-                key.update_color(Piano.white)
-        else:
-            for key in self.white_keys:
-                if key.is_pressed(mouse_x - self.x_pos, mouse_y - self.y_pos):
-                    key.update_color(Piano.pressed_color)
-                else:
-                    key.update_color(Piano.white)
+        for key in self.white_keys:
+            if key.is_pressed(mouse_x - self.x_pos, mouse_y - self.y_pos):
+                key.update_color(Piano.pressed_color)
+                self.pressed_key = key
+                return True
 
+    def get_played_note(self, expected_note):
+        return Note(self.mixer, self.pressed_key.symbol, expected_note.get_octave)
 
     def draw(self, screen):
         for key in self.white_keys:

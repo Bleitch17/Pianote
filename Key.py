@@ -10,18 +10,15 @@ class Key:
         self.symbol = symbol
         self.color = color
 
-        self.draw_color = color
-
         self._rect = pygame.Rect(self.x, self.y, self.w, self.h)
-        self.pressed = False
 
     def is_pressed(self, x, y) -> bool:
         if self._rect.collidepoint(x, y):
-            self.pressed = True
-            print(f"Key pressed: {self.symbol}")
-            return self.pressed
-        self.pressed = False
-        return self.pressed
+            return True
+        return False
+
+    def get_symbol(self):
+        return self.symbol
 
     def update_color(self, new_color):
         self.color = new_color
@@ -29,6 +26,3 @@ class Key:
     def draw(self, surface):
         pygame.draw.rect(surface, self.color, self._rect)
 
-    @property
-    def rect(self):
-        return self._rect
