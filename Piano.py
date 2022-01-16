@@ -9,7 +9,6 @@ class Piano:
 
     black = (0, 0, 0)
     white = (255, 255, 255)
-    grey = (50.2, 50.2, 50.2)
 
     def __init__(self, mixer, x, y):
         self.mixer = mixer
@@ -35,13 +34,16 @@ class Piano:
                      Key(190, 1, 26, 126, "c", Piano.white),
                      Key(208, 0, 9, 78, "extra", Piano.black)]
 
-
-
-    def is_pressed(self) -> bool:
-        pass  # implement the collisions checks
+    def is_pressed(self, mouse_x, mouse_y) -> bool:
+        for key in self.keys:
+            if key.is_pressed(mouse_x, mouse_y):
+                return True
+        return False
 
     def return_note(self) -> Note:
         pass  # return the note that was pressed
 
     def draw(self, screen):
-        pass  # implement the drawing function
+        for key in self.keys:
+            pygame.draw.rect(self.surface, key.color, key.rect)
+        screen.blit(self.surface, (Piano.surface_x_pos, Piano.surface_y_pos))
