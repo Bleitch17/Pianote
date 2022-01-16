@@ -40,15 +40,14 @@ class Game:
 
         # main loop
         while self.running:
+            mouseX, mouseY = pygame.mouse.get_pos()
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
                     pygame.quit()
                     sys.exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                    left, middle, right = pygame.mouse.get_pressed()
-                    mouseX, mouseY = pygame.mouse.get_pos()
-
                     # Call the collision checking functions of the various objects:
                     if self.play_sound_button.is_pressed(event):
                         self.play_sound_button.play_sound()
@@ -57,13 +56,13 @@ class Game:
                     elif self.replay_sound_button.is_pressed(event):
                         self.replay_sound_button.play_sound()
 
-                    elif self.piano.is_pressed(mouseX, mouseY):
-                        print("Piano pressed")
+            left, right, middle = pygame.mouse.get_pressed()
+            if left:
+                self.piano.check_collision(mouseX, mouseY)
+            else:
+                self.piano.reset_color()
 
             self.screen.fill(self.white)
-
-            left, middle, right = pygame.mouse.get_pressed()
-            mouseX, mouseY = pygame.mouse.get_pos()
 
             #137 pixels wide
             #639 pixels tall
@@ -102,53 +101,52 @@ class Game:
             key11 = pygame.Rect(154,0,18,78)
             key14 = pygame.Rect(208,0,9,78)
 
-
             key1c, key3c, key5c, key6c, key8c, key10c, key12c, key13c, key2c, key4c, key7c, key9c, key11c, key14c = self.white, self.white, self.white, self.white, self.white, self.white, self.white, self.white, self.black, self.black, self.black, self.black, self.black, self.black
             keyPressedColor = (150, 150, 150)
 
-            if left:
-                if key2.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
-                    key2c = keyPressedColor
-                    print("key2")
-                elif key4.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
-                    key4c = keyPressedColor
-                    print("key4")
-                elif key7.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
-                    key7c = keyPressedColor
-                    print("key7")
-                elif key9.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
-                    key9c = keyPressedColor
-                    print("key9")
-                elif key11.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
-                    key11c = keyPressedColor
-                    print("key11")
-                elif key14.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
-                    key14c = keyPressedColor
-                    print("key14")
-                elif key1.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
-                    key1c = keyPressedColor
-                    print("key1")
-                elif key3.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
-                    key3c = keyPressedColor
-                    print("key3")
-                elif key5.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
-                    key5c = keyPressedColor
-                    print("key5")
-                elif key6.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
-                    key6c = keyPressedColor
-                    print("key6")
-                elif key8.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
-                    key8c = keyPressedColor
-                    print("key8")
-                elif key10.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
-                    key10c = keyPressedColor
-                    print("key10")
-                elif key12.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
-                    key12c = keyPressedColor
-                    print("key12")
-                elif key13.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
-                    key13c = keyPressedColor
-                    print("key13")
+            # if left:
+            #     if key2.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
+            #         key2c = keyPressedColor
+            #         print("key2")
+            #     elif key4.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
+            #         key4c = keyPressedColor
+            #         print("key4")
+            #     elif key7.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
+            #         key7c = keyPressedColor
+            #         print("key7")
+            #     elif key9.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
+            #         key9c = keyPressedColor
+            #         print("key9")
+            #     elif key11.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
+            #         key11c = keyPressedColor
+            #         print("key11")
+            #     elif key14.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
+            #         key14c = keyPressedColor
+            #         print("key14")
+            #     elif key1.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
+            #         key1c = keyPressedColor
+            #         print("key1")
+            #     elif key3.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
+            #         key3c = keyPressedColor
+            #         print("key3")
+            #     elif key5.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
+            #         key5c = keyPressedColor
+            #         print("key5")
+            #     elif key6.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
+            #         key6c = keyPressedColor
+            #         print("key6")
+            #     elif key8.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
+            #         key8c = keyPressedColor
+            #         print("key8")
+            #     elif key10.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
+            #         key10c = keyPressedColor
+            #         print("key10")
+            #     elif key12.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
+            #         key12c = keyPressedColor
+            #         print("key12")
+            #     elif key13.collidepoint(mouseX-pianoPos[0], mouseY-pianoPos[1]):
+            #         key13c = keyPressedColor
+            #         print("key13")
 
 
             

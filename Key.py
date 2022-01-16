@@ -2,8 +2,6 @@ import pygame
 
 
 class Key:
-    pressed_color = (150, 150, 150)
-
     def __init__(self, x, y, w, h, symbol, color):
         self.x = x
         self.y = y
@@ -24,6 +22,9 @@ class Key:
             return self.pressed
         self.pressed = False
         return self.pressed
+
+    def update_color(self, new_color):
+        self.color = new_color
 
     def draw(self, surface):
         pygame.draw.rect(surface, self.color, self._rect)
