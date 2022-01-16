@@ -2,7 +2,9 @@ import pygame, sys, math
 from PlaySound_Button import playSound_Button
 from ReplaySound_Button import replaySound_Button
 from Piano import Piano
+from Button import Button
 from pygame.locals import *
+import globalvars
 
 
 class Game:
@@ -15,6 +17,9 @@ class Game:
         self.width = width
         self.height = height
         self.clock = clock
+        
+        # Create the button to the menu
+        self.menubutton = Button(100, 100, 100, 100, "Main Menu", (255, 255, 0), (0, 0, 0))
 
         # Create a playSound button:
         self.play_sound_button = playSound_Button(pygame.mixer, x=self.width-75, y=0)
@@ -63,6 +68,13 @@ class Game:
                         self.actual_note = self.piano.get_played_note(self.expected_note.get_octave())
                         self.actual_note.print_note()
 
+                    if self.menubutton.is_pressed(event) and left:
+                        print("Hello")
+                        globalvars.currentScene = "menu"
+                        print(globalvars.currentScene)
+                        self.running = False
+                        break
+
                 elif event.type == pygame.MOUSEBUTTONUP:
                     self.piano.reset_color()
 
@@ -85,6 +97,9 @@ class Game:
             needle = pygame.image.load("Resources/needle.png")
             needle = pygame.transform.scale(needle, (150, 150))
             self.screen.blit(needle, (self.width//2 - 75, self.height//4.5))
+
+            # Draw the menu button
+            self.menubutton.draw(self.screen)
             
 
             pygame.display.update()

@@ -3,6 +3,7 @@ from pygame.locals import *
 
 import globalvars
 from Game import Game
+from Menu import Menu
 
 
 def main():
@@ -23,6 +24,10 @@ def main():
 
         if globalvars.currentScene == "game":
             scene = Game(screen, width, height, clock)
+            scene.run()
+
+        if globalvars.currentScene == "menu":
+            scene = Menu(screen, width, height, clock)
             scene.run()
 
 
