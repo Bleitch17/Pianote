@@ -43,8 +43,8 @@ class Game:
         self.expected_note = None
         self.actual_note = None
 
-        # angle
-        self.angle = 0
+        # Determines whether the piano has been played
+        self.piano_played = False
 
         # distance between expected and actual:
         self.distance = 0
@@ -69,7 +69,7 @@ class Game:
                     pygame.quit()
                     sys.exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                    # Call the collision checking functions of the various objects:
+                    self.piano_played = False
                     left, right, middle = pygame.mouse.get_pressed()
                     if self.play_sound_button.is_pressed(event) and left:
                         self.play_sound_button.play_sound()
@@ -80,6 +80,7 @@ class Game:
                         self.replay_sound_button.play_sound(self.expected_note)
 
                     if self.piano.is_clicked(mouseX, mouseY) and self.expected_note is not None:
+                        self.piano_played = True
                         self.actual_note = self.piano.get_played_note(self.expected_note.get_octave())
                         self.actual_note.print_note()
                         self.actual_note.play()
@@ -99,7 +100,7 @@ class Game:
 
                 elif event.type == pygame.MOUSEBUTTONUP:
                     self.piano.reset_color()
-                    if self.expected_note is not None and self.actual_note is not None:
+                    if self.expected_note is not None and self.actual_note is not None and self.piano_played:
                         self.distance = Note.distance(self.expected_note, self.actual_note)
 
             self.screen.fill((194, 225, 231))
