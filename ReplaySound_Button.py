@@ -2,10 +2,10 @@ import pygame
 
 class replaySound_Button:
 
-    width = 75
-    height = 75
+    width = 30
+    height = 30
 
-    def __init__(self, x=30, y=30):
+    def __init__(self, x=725, y=30):
 
         self.image_path = 'Resources/replay_button.png'
         self.x_pos = x
@@ -25,11 +25,6 @@ class replaySound_Button:
             return True
         return False
 
-<<<<<<< HEAD
-    def play_sound(self, Note):
-        note_name = Note.print_note()
-        print(f"ReplaySound button clicked! Now playing...{note_name}")
-=======
     def play_sound(self, expected_note):
         self.playing_note = expected_note
         if (self.playing_note != None):
@@ -41,5 +36,4 @@ class replaySound_Button:
                 if not self.playing_note.playing():
                     break
         
->>>>>>> origin
         
