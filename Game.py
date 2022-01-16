@@ -33,7 +33,7 @@ class Game:
         self.replay_sound_button = replaySound_Button()
 
         # Create a piano:
-        self.piano = Piano(pygame.mixer, self.width//2 - 110, 3*self.height//5)
+        self.piano = Piano(pygame.mixer, (self.width - 217 * Piano.scale_factor)//2, 400)
 
         # Create an accuracy meter:
         self.meter = Accuracy_Meter(self.width//2 - 75, self.height//4.5, self.width//2-42, self.height//4+28)
@@ -80,6 +80,7 @@ class Game:
                     if self.piano.is_clicked(mouseX, mouseY) and self.expected_note is not None and left:
                         self.actual_note = self.piano.get_played_note(self.expected_note.get_octave())
                         self.actual_note.print_note()
+                        self.actual_note.play()
 
                     if self.menubutton.is_pressed(event) and left:
                         print("Hello")
