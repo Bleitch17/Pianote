@@ -57,7 +57,7 @@ class Game:
                     elif self.replay_sound_button.is_pressed(event) and left:
                         self.replay_sound_button.play_sound()
 
-                    elif self.piano.is_pressed():
+                    elif self.piano.is_pressed(mouseX, mouseY):
                         self.actual_note = self.piano.return_note()
 
             self.screen.fill(self.white)
