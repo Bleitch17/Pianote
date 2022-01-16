@@ -1,5 +1,3 @@
-from typing import List
-import pygame
 
 
 class Note:
@@ -31,7 +29,7 @@ class Note:
             if symbol == self.symbol:
                 return Note.note_symbol_list.index(symbol)
 
-    def play(self, maxtime=2000, fade_ms=125) -> None:
+    def play(self, maxtime=1250, fade_ms=125) -> None:
         self.mixer.Channel(self.channel_num).play(self.sound, loops=0, maxtime=maxtime, fade_ms=fade_ms)
 
     def playing(self) -> bool:
@@ -54,3 +52,14 @@ class Note:
             return Note.octave_range3
         else:
             return Note.octave_range2
+
+    @staticmethod
+    def distance(note1, note2) -> int:
+        s1 = note1.get_symbol()
+        s2 = note2.get_symbol()
+        i1 = Note.note_symbol_list.index(s1)
+        i2 = Note.note_symbol_list.index(s2)
+        return min(abs(i1 - i2), 12 - abs(i2 - i1))
+
+
+
