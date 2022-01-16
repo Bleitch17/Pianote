@@ -53,6 +53,9 @@ class Game:
 
             self.screen.fill(self.white)
 
+            left, middle, right = pygame.mouse.get_pressed()
+            mouseX, mouseY = pygame.mouse.get_pos()
+
             #137 pixels wide
             #639 pixels tall
 
