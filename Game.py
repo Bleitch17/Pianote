@@ -167,9 +167,7 @@ class Game:
             
             # Draw the playSound button
             self.play_sound_button.draw(self.screen)
-            
 
-            pygame.draw.line(self.screen, self.black, (0,0), (pygame.mouse.get_pos()))
 
             #accuracy meter
             meter = pygame.image.load("Resources/scale.png")
