@@ -47,6 +47,7 @@ class Piano:
                 key.update_color(Piano.pressed_color)
                 self.pressed_key = key
                 return True
+        return False
 
     def get_played_note(self, octave):
         return Note(self.mixer, self.pressed_key.symbol, octave)
