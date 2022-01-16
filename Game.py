@@ -19,7 +19,7 @@ class Game:
         self.play_sound_button = playSound_Button(x=self.width-75, y=0)
 
         # Create a replay button:
-        self.replay_button = replaySound_Button()
+        self.replay_sound_button = replaySound_Button()
 
         # colors
         self.black = (0, 0, 0)
@@ -44,6 +44,9 @@ class Game:
                     # Call the collision checking functions of the various objects:
                     if self.play_sound_button.is_pressed(event):
                         self.play_sound_button.play_sound()
+                    elif self.replay_sound_button.is_pressed(event):
+                        self.replay_sound_button.play_sound()
+                    
 
             self.screen.fill(self.white)
 
@@ -56,7 +59,7 @@ class Game:
 
 
             # Draw the replay button
-            self.replay_button.draw(self.screen)
+            self.replay_sound_button.draw(self.screen)
             
             # Draw the playSound button
             self.play_sound_button.draw(self.screen)

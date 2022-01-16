@@ -13,7 +13,16 @@ class replaySound_Button:
 
         self._image = pygame.image.load(self.image_path)
         self._image = pygame.transform.scale(self._image, (replaySound_Button.width, replaySound_Button.height))
+        self.collision_box = pygame.Rect(self.x_pos, self.y_pos, replaySound_Button.width, replaySound_Button.height)
 
     def draw(self, screen):
         screen.blit(self._image, (self.x_pos, self.y_pos))
+
+    def is_pressed(self, event) -> bool:
+        if self.collision_box.collidepoint(event.pos):
+            return True
+        return False
+
+    def play_sound(self):
+        print("ReplaySound button clicked! Now playing...")
         
