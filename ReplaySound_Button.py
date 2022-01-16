@@ -2,10 +2,10 @@ import pygame
 
 class replaySound_Button:
 
-    width = 75
-    height = 75
+    width = 30
+    height = 30
 
-    def __init__(self, x=30, y=30):
+    def __init__(self, x=725, y=30):
 
         self.image_path = 'Resources/replay_button.png'
         self.x_pos = x
