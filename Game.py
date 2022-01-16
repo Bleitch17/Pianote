@@ -19,7 +19,7 @@ class Game:
         self.clock = clock
         
         # Create the button to the menu
-        self.menubutton = Button(100, 100, 100, 100, "Main Menu", (255, 255, 0), (0, 0, 0))
+        self.menubutton = Button(100, 100, 100, 100, "Main Menu", (255, 255, 0), (0, 0, 0), 40)
 
         # Create a playSound button:
         self.play_sound_button = playSound_Button(pygame.mixer, x=self.width-75, y=0)

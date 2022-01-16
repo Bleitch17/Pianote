@@ -14,10 +14,11 @@ class Menu:
         self.clock = clock
         
         # Create the button to the menu
-        self.menubutton = Button(self.width//2-50, 4*self.height//5, 100, 100, "Play Game", (255, 255, 0), (0, 0, 0))
+        self.menubutton = Button(self.width//2, 3*self.height//5, 200, 100, "Play Game", (156, 219, 177), (0, 0, 0), 40)
 
         # Create a piano:
-        self.piano = Piano(pygame.mixer, self.width//2 - 110, 1*self.height//5)
+        self.piano1 = Piano(pygame.mixer, self.width//2 - 189, 1*self.height//5)
+        self.piano2 = Piano(pygame.mixer, self.width//2 - 0, 1*self.height//5)
 
         self.actual_note = None
 
@@ -45,7 +46,8 @@ class Menu:
                     left, right, middle = pygame.mouse.get_pressed()
 
                     if left:
-                        self.piano.is_clicked(mouseX, mouseY)
+                        self.piano1.is_clicked(mouseX, mouseY)
+                        self.piano2.is_clicked(mouseX, mouseY)
 
                     if self.menubutton.is_pressed(event) and left:
                         print("Hello")
@@ -55,16 +57,23 @@ class Menu:
                         break
 
                 elif event.type == pygame.MOUSEBUTTONUP:
-                    self.piano.reset_color()
+                    self.piano1.reset_color()
+                    self.piano2.reset_color()
 
-            self.screen.fill(self.white)
+            self.screen.fill((194, 225, 231))
 
 
             # Draw the piano
-            self.piano.draw(self.screen)
+            self.piano1.draw(self.screen)
+            self.piano2.draw(self.screen)
 
             # Draw the menu button
             self.menubutton.draw(self.screen)
+
+            # Draw title
+            title = pygame.font.SysFont('Roboto', 100).render("Pianote", True, (0,0,0))
+            self.screen.blit(title, title.get_rect(center = (self.width/2, self.height/7)))
+             
             
 
             pygame.display.update()
