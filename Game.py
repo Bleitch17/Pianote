@@ -16,7 +16,7 @@ class Game:
         self.clock = clock
 
         # Create a playSound button:
-        self.play_sound_button = playSound_Button()
+        self.play_sound_button = playSound_Button(x=self.width-75, y=0)
 
         # Create a replay button:
         self.replay_button = replaySound_Button()
@@ -37,10 +37,13 @@ class Game:
                     self.running = False
                     pygame.quit()
                     sys.exit()
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    left, middle, right = pygame.mouse.get_pressed()
+                    mouseX, mouseY = pygame.mouse.get_pos()
 
-            left, middle, right = pygame.mouse.get_pressed()
-            mouseX, mouseY = pygame.mouse.get_pos()
-
+                    # Call the collision checking functions of the various objects:
+                    if self.play_sound_button.is_pressed(event):
+                        self.play_sound_button.play_sound()
 
             self.screen.fill(self.white)
 
@@ -71,6 +74,5 @@ class Game:
             self.screen.blit(needle, (self.width//2 - 75, self.height//4.5))
             
 
-            print("Running Game")
             pygame.display.update()
             self.clock.tick(60)
