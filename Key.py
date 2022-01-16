@@ -13,11 +13,14 @@ class Key:
         self.color = color
 
         self._rect = pygame.Rect(x, y, w, h)
+        self.pressed = False
 
     def is_pressed(self, x, y) -> bool:
         if self._rect.collidepoint(x, y):
-            return True
-        return False
+            self.pressed = True
+            return self.pressed
+        self.pressed = False
+        return self.pressed
 
     @property
     def rect(self):
