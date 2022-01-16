@@ -40,10 +40,12 @@ class Game:
         self.white = (255, 255, 255)
         self.grey = (50.2, 50.2, 50.2)
 
+        # angle
+        self.angle = 0
+
         self.running = True
 
     def run(self):
-
         # main loop
         while self.running:
             mouseX, mouseY = pygame.mouse.get_pos()
@@ -98,8 +100,13 @@ class Game:
             self.screen.blit(meter, (self.width//2 - 75, self.height//4.5))
 
             needle = pygame.image.load("Resources/needle.png")
-            needle = pygame.transform.scale(needle, (150, 150))
-            self.screen.blit(needle, (self.width//2 - 75, self.height//4.5))
+            needle = pygame.transform.scale(needle, (83, 83))
+            original_rect = needle.get_rect()
+            needle = pygame.transform.rotate(needle, self.angle)
+            rotated_rect = original_rect.copy()
+            rotated_rect.center = needle.get_rect().center
+            needle = needle.subsurface(rotated_rect).copy()
+            self.screen.blit(needle, (self.width//2-42, self.height//4+28))
 
             # Draw the menu button
             self.menubutton.draw(self.screen)
@@ -107,3 +114,4 @@ class Game:
 
             pygame.display.update()
             self.clock.tick(60)
+            self.angle-= 1
