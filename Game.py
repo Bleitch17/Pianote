@@ -1,6 +1,7 @@
 import pygame, sys, math
 from PlaySound_Button import playSound_Button
 from ReplaySound_Button import replaySound_Button
+from Piano import Piano
 from pygame.locals import *
 
 
@@ -18,11 +19,15 @@ class Game:
         # Create a playSound button:
         self.play_sound_button = playSound_Button(pygame.mixer, x=self.width-75, y=0)
 
-        # Keep track of the "correct" note
-        self.expected_note = None
-
         # Create a replay button:
         self.replay_sound_button = replaySound_Button()
+
+        # Create a piano:
+        self.piano = Piano(pygame.mixer, self.width//2 - 110, 3*self.height//5)
+
+        # Keep track of the "correct"  and "actual" note
+        self.expected_note = None
+        self.actual_note = None
 
         # colors
         self.black = (0, 0, 0)
@@ -51,7 +56,9 @@ class Game:
 
                     elif self.replay_sound_button.is_pressed(event) and left:
                         self.replay_sound_button.play_sound()
-                    
+
+                    elif self.piano.is_pressed():
+                        self.actual_note = self.piano.return_note()
 
             self.screen.fill(self.white)
 
@@ -79,18 +86,18 @@ class Game:
             pianoPos = (self.width//2 - 110, 3*self.height//5)
             pianoSurface = pygame.Surface((217, 128))
             pianoSurface.fill((0, 0, 0))
-            key1 = pygame.Rect(1,1,26,126)
-            key3 = pygame.Rect(28,1,26,126)
-            key5 = pygame.Rect(55,1,26,126)
-            key6 = pygame.Rect(82,1,26,126)
-            key8 = pygame.Rect(109,1,26,126)
-            key10 = pygame.Rect(136,1,26,126)
-            key12 = pygame.Rect(163,1,26,126)
-            key13 = pygame.Rect(190,1,26,126)
+            key1 = pygame.Rect(1,1,26,126) # C
+            key3 = pygame.Rect(28,1,26,126) # D
+            key5 = pygame.Rect(55,1,26,126) # E
+            key6 = pygame.Rect(82,1,26,126) #F
+            key8 = pygame.Rect(109,1,26,126) # G
+            key10 = pygame.Rect(136,1,26,126) # A
+            key12 = pygame.Rect(163,1,26,126) # B
+            key13 = pygame.Rect(190,1,26,126) # C
 
-            key2 = pygame.Rect(19,0,18,78)
-            key4 = pygame.Rect(46,0,18,78)
-            key7 = pygame.Rect(100,0,18,78)
+            key2 = pygame.Rect(19,0,18,78) # c#
+            key4 = pygame.Rect(46,0,18,78) # d#
+            key7 = pygame.Rect(100,0,18,78) # f#
             key9 = pygame.Rect(127,0,18,78)
             key11 = pygame.Rect(154,0,18,78)
             key14 = pygame.Rect(208,0,9,78)
