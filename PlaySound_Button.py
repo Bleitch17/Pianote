@@ -33,7 +33,6 @@ class playSound_Button:
             if not self.playing_note.playing():
                 break
 
-        self.playing_note = None
 
     def choose_note(self) -> Note:
         note_symbol = random.randint(0, len(Note.note_symbol_list) - 1)
