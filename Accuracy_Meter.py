@@ -2,11 +2,13 @@ import pygame
 
 
 class Accuracy_Meter:
-    def __init__(self, meter_x, meter_y, needle_x, needle_y):
+    def __init__(self, meter_x, meter_y, needle_x, needle_y, width, height):
         self.meter_x_pos = meter_x
         self.meter_y_pos = meter_y
         self.needle_x_pos = needle_x
         self.needle_y_pos = needle_y
+        self.width = width
+        self.height = height
 
         self.angle = 0
         self.delta = 1
@@ -26,6 +28,9 @@ class Accuracy_Meter:
     def draw(self, screen):
         screen.blit(self.meter, (self.meter_x_pos, self.meter_y_pos))
         screen.blit(self.needle, (self.needle_x_pos, self.needle_y_pos))
+
+        name = pygame.font.SysFont('Roboto', 30).render("Accuracy", True, (0,0,0))
+        screen.blit(name, name.get_rect(center = (self.width//2, 3*self.height//8+20)))
 
     def adjust_angle(self, distance):
         target_angle = distance * -30

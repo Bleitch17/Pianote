@@ -3,8 +3,8 @@ import random
 from Note import Note
 
 class playSound_Button:
-    width = 25
-    height = 25
+    width = 50
+    height = 50
 
     def __init__(self, mixer, x=725, y=0) -> None:
         self.mixer = mixer
@@ -49,3 +49,5 @@ class playSound_Button:
 
     def draw(self, screen) -> None:
         screen.blit(self._image, (self.x_pos, self.y_pos))
+        name = pygame.font.SysFont('Roboto', 30).render("New Note", True, (0,0,0))
+        screen.blit(name, name.get_rect(center = (self.x_pos+25, self.y_pos+70)))

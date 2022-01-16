@@ -24,20 +24,20 @@ class Game:
         self.star = Star()
 
         # Create the button to the menu
-        self.menubutton = Button(100, 100, 100, 100, "Main Menu", (255, 255, 0), (0, 0, 0), 40)
+        self.menubutton = Button(150, 100, 200, 100, "Main Menu", (156, 219, 177), (0, 0, 0), 40)
 
         # Create a playSound button:
-        self.play_sound_button = playSound_Button(pygame.mixer, x=self.width-75, y=0)
+        self.play_sound_button = playSound_Button(pygame.mixer, 3*self.width/4-100, 50)
 
         # Create a replay button:
-        self.replay_sound_button = replaySound_Button()
+        self.replay_sound_button = replaySound_Button(3*self.width/4+50, 50)
 
         # Create a piano:
-        self.piano = Piano(pygame.mixer, (self.width - 217 * Piano.scale_factor)//2, 400)
+        self.piano = Piano(pygame.mixer, (self.width - 217 * 2)//2, 450, 2)
 
         # Create meter
         self.meter = Accuracy_Meter(self.width // 2 - 75, self.height // 4.5, self.width // 2 - 42,
-                                    self.height // 4 + 28)
+                                    self.height // 4 + 28, self.width, self.height)
 
         # Keep track of the "correct"  and "actual" note
         self.expected_note = None
@@ -102,7 +102,7 @@ class Game:
                     if self.expected_note is not None and self.actual_note is not None:
                         self.distance = Note.distance(self.expected_note, self.actual_note)
 
-            self.screen.fill(self.white)
+            self.screen.fill((194, 225, 231))
 
             # Draw Star
             self.star.updateStars()

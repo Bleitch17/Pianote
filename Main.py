@@ -14,7 +14,7 @@ def main():
     pygame.display.set_caption("Pianote")
     clock = pygame.time.Clock()
 
-    globalvars.currentScene = "menu"
+    globalvars.currentScene = "game"
 
     while True:
         for event in pygame.event.get():

@@ -17,8 +17,8 @@ class Menu:
         self.menubutton = Button(self.width//2, 3*self.height//5, 200, 100, "Play Game", (156, 219, 177), (0, 0, 0), 40)
 
         # Create a piano:
-        self.piano1 = Piano(pygame.mixer, self.width//2 - 189, 1*self.height//5)
-        self.piano2 = Piano(pygame.mixer, self.width//2 - 0, 1*self.height//5)
+        self.piano1 = Piano(pygame.mixer, self.width//2 - 189, 1*self.height//5, 1)
+        self.piano2 = Piano(pygame.mixer, self.width//2 - 0, 1*self.height//5, 1)
 
         self.actual_note = None
 

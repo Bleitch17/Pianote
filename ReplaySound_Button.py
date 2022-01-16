@@ -2,8 +2,8 @@ import pygame
 
 class replaySound_Button:
 
-    width = 30
-    height = 30
+    width = 50
+    height = 50
 
     def __init__(self, x=725, y=30):
 
@@ -19,6 +19,8 @@ class replaySound_Button:
 
     def draw(self, screen):
         screen.blit(self._image, (self.x_pos, self.y_pos))
+        name = pygame.font.SysFont('Roboto', 30).render("Replay Note", True, (0,0,0))
+        screen.blit(name, name.get_rect(center = (self.x_pos+25, self.y_pos+70)))
 
     def is_pressed(self, event) -> bool:
         if self.collision_box.collidepoint(event.pos):
