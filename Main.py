@@ -13,6 +13,7 @@ def main():
     height = 800
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("Pianote")
+    pygame.display.set_icon(pygame.image.load('Resources/note.png'))
     clock = pygame.time.Clock()
 
     globalvars.currentScene = "menu"
