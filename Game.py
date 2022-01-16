@@ -18,6 +18,9 @@ class Game:
         # Create a playSound button:
         self.play_sound_button = playSound_Button(pygame.mixer, x=self.width-75, y=0)
 
+        # Keep track of the "correct" note
+        self.expected_note = None
+
         # Create a replay button:
         self.replay_sound_button = replaySound_Button()
 
