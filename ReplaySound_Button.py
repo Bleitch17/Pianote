@@ -1,6 +1,6 @@
 import pygame
 
-class replayButton:
+class replaySound_Button:
 
     width = 75
     height = 75
@@ -12,7 +12,7 @@ class replayButton:
         self.y_pos = y
 
         self._image = pygame.image.load(self.image_path)
-        self._image = pygame.transform.scale(self._image, (replayButton.width, replayButton.height))
+        self._image = pygame.transform.scale(self._image, (replaySound_Button.width, replaySound_Button.height))
 
     def draw(self, screen):
         screen.blit(self._image, (self.x_pos, self.y_pos))

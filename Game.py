@@ -1,6 +1,6 @@
 import pygame, sys, math
 from PlaySound_Button import playSound_Button
-from Replay_Button import replayButton
+from ReplaySound_Button import replaySound_Button
 from pygame.locals import *
 
 
@@ -19,7 +19,7 @@ class Game:
         self.play_sound_button = playSound_Button()
 
         # Create a replay button:
-        self.replay_button = replayButton()
+        self.replay_button = replaySound_Button()
 
         # colors
         self.black = (0, 0, 0)
