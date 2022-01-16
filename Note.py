@@ -22,7 +22,7 @@ class Note:
             if symbol == self.symbol:
                 return Note.note_symbol_list.index(symbol)
 
-    def play(self, maxtime=4000, fade_ms=125) -> None:
+    def play(self, maxtime=2000, fade_ms=125) -> None:
         self.mixer.Channel(self.channel_num).play(self.sound, loops=0, maxtime=maxtime, fade_ms=fade_ms)
 
     def playing(self) -> bool:
@@ -32,7 +32,7 @@ class Note:
         print(self.name)
 
     @staticmethod
-    def get_octave_range(note_symbol) -> [int, int]:
+    def get_octave_range(note_symbol):
         if note_symbol == 'a#' or note_symbol == 'a' or note_symbol == 'b':
             return Note.octave_range1
         elif note_symbol == 'c':
