@@ -43,9 +43,9 @@ class Game:
 
                     # Call the collision checking functions of the various objects:
                     if self.play_sound_button.is_pressed(event):
-                        self.play_sound_button.play_sound()
+                        note = self.play_sound_button.play_sound()
                     elif self.replay_sound_button.is_pressed(event):
-                        self.replay_sound_button.play_sound()
+                        self.replay_sound_button.play_sound(note)
                     
 
             self.screen.fill(self.white)

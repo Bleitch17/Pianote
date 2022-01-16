@@ -25,6 +25,7 @@ class playSound_Button:
     def play_sound(self) -> Note:
         note = self.choose_note()
         note.print_note()
+        return note
 
     def choose_note(self) -> Note:
         note_symbol = random.randint(0, len(Note.note_symbol_list) - 1)

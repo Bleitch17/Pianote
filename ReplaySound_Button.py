@@ -23,6 +23,7 @@ class replaySound_Button:
             return True
         return False
 
-    def play_sound(self):
-        print("ReplaySound button clicked! Now playing...")
+    def play_sound(self, Note):
+        note_name = Note.print_note()
+        print(f"ReplaySound button clicked! Now playing...{note_name}")
         

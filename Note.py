@@ -1,3 +1,4 @@
+from typing import List
 import pygame
 
 
@@ -32,7 +33,7 @@ class Note:
         print(self.name)
 
     @staticmethod
-    def get_octave_range(note_symbol) -> [int, int]:
+    def get_octave_range(note_symbol):
         if note_symbol == 'a#' or note_symbol == 'a' or note_symbol == 'b':
             return Note.octave_range1
         elif note_symbol == 'c':
