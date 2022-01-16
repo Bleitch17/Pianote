@@ -1,5 +1,6 @@
 import pygame, sys, math
 from PlaySound_Button import playSound_Button
+from Replay_Button import replayButton
 from pygame.locals import *
 
 
@@ -16,6 +17,9 @@ class Game:
 
         # Create a playSound button:
         self.play_sound_button = playSound_Button()
+
+        # Create a replay button:
+        self.replay_button = replayButton()
 
         # colors
         self.black = (0, 0, 0)
@@ -48,15 +52,12 @@ class Game:
             self.screen.blit(piano, pianoRect)
 
 
-
-            replay = pygame.image.load('Resources/replay_button.png')
-            replaySize = pygame.transform.scale(replay, (75,75))
-            replaySizeRect = replaySize.get_rect()
-            replaySizeRect.move_ip(30, 30)
-            self.screen.blit(replaySize, replaySizeRect)
-
+            # Draw the replay button
+            self.replay_button.draw(self.screen)
+            
             # Draw the playSound button
             self.play_sound_button.draw(self.screen)
+            
 
             pygame.draw.line(self.screen, self.black, (0,0), (pygame.mouse.get_pos()))
 
