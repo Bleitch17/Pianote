@@ -4,6 +4,7 @@ from pygame.locals import *
 import globalvars
 from Game import Game
 from Menu import Menu
+from Help import Help
 
 
 def main():
@@ -28,6 +29,10 @@ def main():
 
         if globalvars.currentScene == "menu":
             scene = Menu(screen, width, height, clock)
+            scene.run()
+
+        if globalvars.currentScene == "help":
+            scene = Help(screen, width, height, clock)
             scene.run()
 
 

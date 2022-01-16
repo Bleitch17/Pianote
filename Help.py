@@ -5,7 +5,7 @@ from pygame.locals import *
 import globalvars
 
 
-class Menu:
+class Help:
     def __init__(self, screen, width, height, clock):
 
         self.screen = screen
@@ -13,11 +13,9 @@ class Menu:
         self.height = height
         self.clock = clock
         
-        # Create the button to the game
-        self.gamebutton = Button(self.width//2, 3*self.height//5, 200, 100, "Play Game", (156, 219, 177), (0, 0, 0), 40)
+        # Create the button to the menu
+        self.menubutton = Button(self.width//2, 1*self.height//2, 250, 100, "Return to Menu", (156, 219, 177), (0, 0, 0), 40)
 
-        # Create the button to the help page
-        self.helpbutton = Button(self.width//2, 4*self.height//5, 200, 100, "Help", (156, 219, 177), (0, 0, 0), 40)
 
         # Create a piano:
         self.piano1 = Piano(pygame.mixer, self.width//2 - 189, 1*self.height//5, 1)
@@ -52,16 +50,9 @@ class Menu:
                         self.piano1.is_clicked(mouseX, mouseY)
                         self.piano2.is_clicked(mouseX, mouseY)
 
-                    if self.gamebutton.is_pressed(event) and left:
+                    if self.menubutton.is_pressed(event) and left:
                         print("Hello")
-                        globalvars.currentScene = "game"
-                        print(globalvars.currentScene)
-                        self.running = False
-                        break
-
-                    if self.helpbutton.is_pressed(event) and left:
-                        print("Hello")
-                        globalvars.currentScene = "help"
+                        globalvars.currentScene = "menu"
                         print(globalvars.currentScene)
                         self.running = False
                         break
@@ -77,14 +68,23 @@ class Menu:
             self.piano1.draw(self.screen)
             self.piano2.draw(self.screen)
 
-            # Draw the menu button and game button
-            self.gamebutton.draw(self.screen)
-            self.helpbutton.draw(self.screen)
+            # Draw the menu button
+            self.menubutton.draw(self.screen)
 
             # Draw title
             title = pygame.font.SysFont('Roboto', 100).render("Pianote", True, (0,0,0))
             self.screen.blit(title, title.get_rect(center = (self.width/2, self.height/7)))
-             
+
+            # Write help text
+            helpText = ["Pianote is a program to help practice piano Ear Training", 
+                        "Press the New Note button to listen to a new note",
+                        "Then, press the corresponding key on the Piano keyboard",
+                        "The accuracy meter will show how close your note was to the actual note",
+                        "If neccessary, press the Replay Note button to listen to the current note again"]
+
+            for lineIndex in range(len(helpText)):
+                line = pygame.font.SysFont('Roboto', 30).render(helpText[lineIndex], True, (0,0,0))
+                self.screen.blit(line, line.get_rect(center = (self.width/2, 6*self.height/10 + lineIndex*50)))
             
 
             pygame.display.update()
