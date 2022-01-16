@@ -36,14 +36,14 @@ class Piano:
 
     def is_pressed(self, mouse_x, mouse_y) -> bool:
         for key in self.keys:
-            if key.is_pressed(mouse_x, mouse_y):
+            if key.is_pressed(mouse_x - self.x_pos, mouse_y - self.y_pos):
                 return True
         return False
 
     def return_note(self) -> Note:
-        pass  # return the note that was pressed
+        return None
 
     def draw(self, screen):
         for key in self.keys:
-            pygame.draw.rect(self.surface, key.color, key.rect)
-        screen.blit(self.surface, (Piano.surface_x_pos, Piano.surface_y_pos))
+            key.draw(self.surface)
+        screen.blit(self.surface, (self.x_pos, self.y_pos))

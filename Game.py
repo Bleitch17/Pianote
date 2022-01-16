@@ -57,8 +57,8 @@ class Game:
                     elif self.replay_sound_button.is_pressed(event):
                         self.replay_sound_button.play_sound()
 
-                    elif self.piano.is_pressed():
-                        self.actual_note = self.piano.return_note()
+                    elif self.piano.is_pressed(mouseX, mouseY):
+                        print("Piano pressed")
 
             self.screen.fill(self.white)
 
@@ -153,7 +153,7 @@ class Game:
 
             
             
-            pygame.draw.rect(pianoSurface, key1c, key1)            
+            pygame.draw.rect(pianoSurface, key1c, key1)
             pygame.draw.rect(pianoSurface, key3c, key3)
             pygame.draw.rect(pianoSurface, key5c, key5)
             pygame.draw.rect(pianoSurface, key6c, key6)
@@ -167,7 +167,7 @@ class Game:
             pygame.draw.rect(pianoSurface, key9c, key9)
             pygame.draw.rect(pianoSurface, key11c, key11)
             pygame.draw.rect(pianoSurface, key14c, key14)
-            self.screen.blit(pianoSurface, pianoPos)
+            # self.screen.blit(pianoSurface, pianoPos)
 
             # Draw the replay button
             self.replay_sound_button.draw(self.screen)
@@ -175,6 +175,8 @@ class Game:
             # Draw the playSound button
             self.play_sound_button.draw(self.screen)
 
+            # Draw the piano
+            self.piano.draw(self.screen)
 
             #accuracy meter
             meter = pygame.image.load("Resources/scale.png")
