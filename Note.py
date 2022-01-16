@@ -29,7 +29,7 @@ class Note:
             if symbol == self.symbol:
                 return Note.note_symbol_list.index(symbol)
 
-    def play(self, maxtime=2000, fade_ms=125) -> None:
+    def play(self, maxtime=1250, fade_ms=125) -> None:
         self.mixer.Channel(self.channel_num).play(self.sound, loops=0, maxtime=maxtime, fade_ms=fade_ms)
 
     def playing(self) -> bool:

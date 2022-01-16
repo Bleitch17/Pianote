@@ -20,6 +20,12 @@ class Key:
     def get_symbol(self):
         return self.symbol
 
+    def is_valid(self):
+        if self.symbol == "c" and self.color == (0, 0, 0):
+            return False
+        else:
+            return True
+
     def update_color(self, new_color):
         if self.symbol == "c" and self.color == (0, 0, 0):
             self.color = (0, 0, 0)
