@@ -50,12 +50,13 @@ class Game:
                     mouseX, mouseY = pygame.mouse.get_pos()
 
                     # Call the collision checking functions of the various objects:
-                    if self.play_sound_button.is_pressed(event):
+                    if self.play_sound_button.is_pressed(event) and left:
                         self.play_sound_button.play_sound()
                         self.expected_note = self.play_sound_button.get_playing_note()
 
-                    elif self.replay_sound_button.is_pressed(event):
-                        self.replay_sound_button.play_sound()
+                    elif self.replay_sound_button.is_pressed(event) and left:
+                        print(self.expected_note)
+                        self.replay_sound_button.play_sound(self.expected_note)
 
                     elif self.piano.is_pressed(mouseX, mouseY):
                         print("Piano pressed")
