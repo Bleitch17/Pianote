@@ -23,12 +23,6 @@ class playSound_Button:
             return True
         return False
 
-<<<<<<< HEAD
-    def play_sound(self) -> Note:
-        note = self.choose_note()
-        note.print_note()
-        return note
-=======
     def play_sound(self) -> None:
         self.playing_note = self.choose_note()
         self.playing_note.print_note()
@@ -40,7 +34,6 @@ class playSound_Button:
                 break
 
         self.playing_note = None
->>>>>>> origin
 
     def choose_note(self) -> Note:
         note_symbol = random.randint(0, len(Note.note_symbol_list) - 1)
