@@ -89,6 +89,8 @@ class Game:
 
                 elif event.type == pygame.MOUSEBUTTONUP:
                     self.piano.reset_color()
+                    if self.expected_note is not None and self.actual_note is not None:
+                        self.distance = Note.distance(self.expected_note, self.actual_note)
 
             self.screen.fill(self.white)
 
