@@ -8,14 +8,22 @@ class Note:
     octave_range2 = [1, 7]
     octave_range3 = [1, 8]
 
-    def __init__(self, mixer, symbol='c', octave=4) -> None:
+    def __init__(self, mixer, symbol="c", octave=4) -> None:
         self.mixer = mixer
         self.symbol = symbol
         self.octave = octave
-
         self.channel_num = self.find_channel_num()
 
-        self.name = symbol + str(octave)
+        if octave == 0:
+            if self.symbol == "a" or self.symbol == "a#" or self.symbol == "b":
+                self.octave = 0
+            else:
+                self.octave = 1
+
+        self.name = symbol + str(self.octave)
+
+        # Bug waiting to happen: if A0 is randomly chosen, and I play d on the keyboard, this line will crash
+        # Also happens if the extra note is played
         self.sound = mixer.Sound("Audio/" + f"{self.name}" + ".wav")
 
     def find_channel_num(self) -> int:
