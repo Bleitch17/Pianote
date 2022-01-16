@@ -18,6 +18,7 @@ class Key:
     def is_pressed(self, x, y) -> bool:
         if self._rect.collidepoint(x, y):
             self.pressed = True
+
             return self.pressed
         self.pressed = False
         return self.pressed
