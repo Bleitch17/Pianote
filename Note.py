@@ -3,6 +3,9 @@ import pygame
 
 class Note:
     note_symbol_list = ['c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b']
+    octave_range1 = [0, 7]
+    octave_range2 = [1, 7]
+    octave_range3 = [1, 8]
 
     def __init__(self, mixer, symbol='c', octave=4) -> None:
         self.mixer = mixer
@@ -25,3 +28,14 @@ class Note:
     def playing(self) -> bool:
         return self.mixer.Channel(self.channel_num).get_busy()
 
+    def print_note(self) -> None:
+        print(self.name)
+
+    @staticmethod
+    def get_octave_range(note_symbol) -> [int, int]:
+        if note_symbol == 'a#' or note_symbol == 'a' or note_symbol == 'b':
+            return Note.octave_range1
+        elif note_symbol == 'c':
+            return Note.octave_range3
+        else:
+            return Note.octave_range2
