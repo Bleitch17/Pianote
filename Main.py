@@ -1,7 +1,7 @@
 import pygame, sys, math
 from pygame.locals import *
 
-
+import globalvars
 from Game import Game
 
 
@@ -13,7 +13,7 @@ def main():
     pygame.display.set_caption("Basic-Ear-Trainer")
     clock = pygame.time.Clock()
 
-    currentScene = "game"
+    globalvars.currentScene = "game"
 
     while True:
         for event in pygame.event.get():
@@ -21,7 +21,7 @@ def main():
                 pygame.quit()
                 sys.exit()
 
-        if currentScene == "game":
+        if globalvars.currentScene == "game":
             scene = Game(screen, width, height, clock)
             scene.run()
 

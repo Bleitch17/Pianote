@@ -2,8 +2,6 @@ import pygame
 
 
 class Key:
-    pressed_color = (150, 150, 150)
-
     def __init__(self, x, y, w, h, symbol, color):
         self.x = x
         self.y = y
@@ -12,17 +10,19 @@ class Key:
         self.symbol = symbol
         self.color = color
 
-        self._rect = pygame.Rect(x, y, w, h)
-        self.pressed = False
+        self._rect = pygame.Rect(self.x, self.y, self.w, self.h)
 
     def is_pressed(self, x, y) -> bool:
         if self._rect.collidepoint(x, y):
-            self.pressed = True
+            return True
+        return False
 
-            return self.pressed
-        self.pressed = False
-        return self.pressed
+    def get_symbol(self):
+        return self.symbol
 
-    @property
-    def rect(self):
-        return self._rect
+    def update_color(self, new_color):
+        self.color = new_color
+
+    def draw(self, surface):
+        pygame.draw.rect(surface, self.color, self._rect)
+

@@ -15,6 +15,8 @@ class replaySound_Button:
         self._image = pygame.transform.scale(self._image, (replaySound_Button.width, replaySound_Button.height))
         self.collision_box = pygame.Rect(self.x_pos, self.y_pos, replaySound_Button.width, replaySound_Button.height)
 
+        self.playing_note = None
+
     def draw(self, screen):
         screen.blit(self._image, (self.x_pos, self.y_pos))
 
@@ -23,7 +25,21 @@ class replaySound_Button:
             return True
         return False
 
+<<<<<<< HEAD
     def play_sound(self, Note):
         note_name = Note.print_note()
         print(f"ReplaySound button clicked! Now playing...{note_name}")
+=======
+    def play_sound(self, expected_note):
+        self.playing_note = expected_note
+        if (self.playing_note != None):
+            self.playing_note.print_note()
+            self.playing_note.play()
+
+            # TODO: This while loop is problematic, find a way to move it outside
+            while self.playing_note.playing():
+                if not self.playing_note.playing():
+                    break
+        
+>>>>>>> origin
         
