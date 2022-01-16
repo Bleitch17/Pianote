@@ -17,7 +17,7 @@ class Star:
     height = 30
 
     def __init__(self):
-        self.count = 7
+        self.count = 0
         self.stars = 0
         self.image_path = "Resources/star.png"
         self._image = pygame.image.load(self.image_path)

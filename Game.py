@@ -35,9 +35,6 @@ class Game:
         # Create a piano:
         self.piano = Piano(pygame.mixer, self.width//2 - 110, 3*self.height//5)
 
-        # Create an accuracy meter:
-        self.meter = Accuracy_Meter(self.width//2 - 75, self.height//4.5, self.width//2-42, self.height//4+28)
-
         # Keep track of the "correct"  and "actual" note
         self.expected_note = None
         self.actual_note = None
@@ -47,15 +44,10 @@ class Game:
         self.white = (255, 255, 255)
         self.grey = (50.2, 50.2, 50.2)
 
-        # angle
-        self.angle = 0
-
-        # distance between expected and actual:
-        self.distance = 0
-
         self.running = True
 
     def run(self):
+
         # main loop
         while self.running:
             mouseX, mouseY = pygame.mouse.get_pos()
@@ -77,9 +69,15 @@ class Game:
                         print(self.expected_note)
                         self.replay_sound_button.play_sound(self.expected_note)
 
-                    if self.piano.is_clicked(mouseX, mouseY) and self.expected_note is not None and left:
+                    if self.piano.is_clicked(mouseX, mouseY) and self.expected_note is not None:
                         self.actual_note = self.piano.get_played_note(self.expected_note.get_octave())
                         self.actual_note.print_note()
+
+                        difference = Note.distance(self.actual_note, self.expected_note)
+                        if  difference == 0:
+                            self.star.incr_decr_Star(True)
+                        else: 
+                            self.star.incr_decr_Star(False)
 
                     if self.menubutton.is_pressed(event) and left:
                         print("Hello")
@@ -90,8 +88,6 @@ class Game:
 
                 elif event.type == pygame.MOUSEBUTTONUP:
                     self.piano.reset_color()
-                    if self.expected_note is not None and self.actual_note is not None:
-                        self.distance = Note.distance(self.expected_note, self.actual_note)
 
             self.screen.fill(self.white)
 
@@ -108,26 +104,18 @@ class Game:
             # Draw the piano
             self.piano.draw(self.screen)
 
-            # Accuracy meter
-            self.meter.adjust_angle(self.distance)
-            self.meter.draw(self.screen)
+            #accuracy meter
+            meter = pygame.image.load("Resources/scale.png")
+            meter = pygame.transform.scale(meter, (150, 150))
+            self.screen.blit(meter, (self.width//2 - 75, self.height//4.5))
 
-            # meter = pygame.image.load("Resources/scale.png")
-            # meter = pygame.transform.scale(meter, (150, 150))
-            # self.screen.blit(meter, (self.width//2 - 75, self.height//4.5))
-            #
-            # needle = pygame.image.load("Resources/needle.png")
-            # needle = pygame.transform.scale(needle, (83, 83))
-            # original_rect = needle.get_rect()
-            # needle = pygame.transform.rotate(needle, self.angle)
-            # rotated_rect = original_rect.copy()
-            # rotated_rect.center = needle.get_rect().center
-            # needle = needle.subsurface(rotated_rect).copy()
-            # self.screen.blit(needle, (self.width//2-42, self.height//4+28))
+            needle = pygame.image.load("Resources/needle.png")
+            needle = pygame.transform.scale(needle, (150, 150))
+            self.screen.blit(needle, (self.width//2 - 75, self.height//4.5))
 
             # Draw the menu button
             self.menubutton.draw(self.screen)
+            
 
             pygame.display.update()
             self.clock.tick(60)
-            # self.angle += 1
