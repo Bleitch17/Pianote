@@ -106,7 +106,8 @@ class Game:
             self.piano.draw(self.screen)
 
             # Meter
-
+            self.meter.adjust_angle(self.distance)
+            self.meter.draw(self.screen)
 
             # Draw the menu button
             self.menubutton.draw(self.screen)
