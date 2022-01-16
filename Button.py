@@ -3,7 +3,7 @@ import random
 
 class Button:
 
-    def __init__(self, x, y, w, h, text, color, fontColor) -> None:
+    def __init__(self, x, y, w, h, text, color, fontColor, fontSize) -> None:
         self.x_pos = x
         self.y_pos = y
         self.width = w
@@ -11,9 +11,11 @@ class Button:
         self.text = text
         self.color = color
         self.fontColor = fontColor
-        self.font = pygame.font.SysFont('Arial', 25)
+        self.fontSize = fontSize
+        self.font = pygame.font.SysFont('Roboto', fontSize)
 
         self.collision_box = pygame.Rect(self.x_pos, self.y_pos, self.width, self.height)
+        self.collision_box.center = (self.x_pos, self.y_pos)
 
         self.playing_note = None
 
@@ -24,6 +26,6 @@ class Button:
 
     def draw(self, screen) -> None:
         pygame.draw.rect(screen, self.color, self.collision_box)
-
-        screen.blit(self.font.render(self.text, True, self.fontColor), (self.x_pos, self.y_pos))
+        drawtext = self.font.render(self.text, True, self.fontColor)
+        screen.blit(drawtext, drawtext.get_rect(center = (self.x_pos, self.y_pos)))
         
