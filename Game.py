@@ -76,7 +76,7 @@ class Game:
 
             # self.screen.blit(piano, pianoRect)
 
-            pianoPos = (100, 100)
+            pianoPos = (self.width//2 - 110, 3*self.height//5)
             pianoSurface = pygame.Surface((217, 128))
             pianoSurface.fill((0, 0, 0))
             key1 = pygame.Rect(1,1,26,126)
