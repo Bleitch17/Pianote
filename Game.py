@@ -50,6 +50,7 @@ class Game:
                     sys.exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     # Call the collision checking functions of the various objects:
+                    left, right, middle = pygame.mouse.get_pressed()
                     if self.play_sound_button.is_pressed(event) and left:
                         self.play_sound_button.play_sound()
                         self.expected_note = self.play_sound_button.get_playing_note()
